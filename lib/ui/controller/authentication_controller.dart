@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:loggy/loggy.dart';
 import '../../domain/use_case/authentication_usecase.dart';
@@ -6,6 +7,11 @@ class AuthenticationController extends GetxController {
   final logged = false.obs;
 
   bool get isLogged => logged.value;
+
+  AuthenticationController() {
+    logInfo('Controller Init');
+    logged.value = FirebaseAuth.instance.currentUser != null;
+  }
 
   Future<bool> login(email, password) async {
     logInfo('Controller Login');
@@ -24,5 +30,11 @@ class AuthenticationController extends GetxController {
     logInfo('Controller Log Out');
     await Get.find<AuthenticationUseCase>().logOut();
     logged.value = false;
+  }
+
+  bool isLoggedUser() {
+    logInfo('Controller isLoggedUser');
+    return true;
+    //return Get.find<AuthenticationUseCase>().isLoggedUser();
   }
 }

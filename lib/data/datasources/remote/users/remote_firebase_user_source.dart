@@ -19,7 +19,7 @@ class RemoteFirebaseUserSource implements IRemoteUserSource {
   @override
   Future<bool> deleteUser(String id) async {
     // TODO implement deleteUser using the id of the user as reference to find the doc
-
+    await database.doc(id).delete();
     return Future.value(true);
   }
 

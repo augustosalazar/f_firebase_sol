@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../data/datasources/remote/authentication/authentication_fire_source.dart';
+import '../data/datasources/remote/authentication/authentication_source.dart';
 import '../data/datasources/remote/authentication/i_authentication_source.dart';
 import '../data/datasources/remote/users/i_remote_user_source.dart';
+import '../data/datasources/remote/users/remote_firebase_user_source.dart';
 import '../data/datasources/remote/users/remote_user_source.dart';
 import '../data/repositories/repository.dart';
 import '../domain/repositories/i_repository.dart';
@@ -20,7 +22,7 @@ class MyApp extends StatelessWidget {
     //TODO change the source to AuthenticationFireSource
     Get.put<IAuthenticationSource>(AuthenticationFireSource());
     //TODO change the source to RemoteFirebaseUserSource
-    Get.put<IRemoteUserSource>(RemoteUserSource());
+    Get.put<IRemoteUserSource>(RemoteFirebaseUserSource());
     Get.put<IRepository>(Repository(Get.find(), Get.find()));
     Get.put(AuthenticationUseCase(Get.find()));
     Get.put(UserUseCase(Get.find()));
